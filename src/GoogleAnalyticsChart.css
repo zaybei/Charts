@@ -1,0 +1,14 @@
+.dropdown-container {
+  display: flex; /* Use flexbox to arrange items horizontally */
+  align-items: center; /* Align items vertically centered */
+  gap: 20px; /* Add space between dropdowns */
+  margin-bottom: 10px; /* Add margin below the container */
+}
+
+.dropdown {
+  padding: 8px; /* Add padding inside the dropdown */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  font-size: 16px; /* Optional: Increase font size */
+  margin-left: 8px;
+}

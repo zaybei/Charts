@@ -1,5 +1,9 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React, { useState } from 'react';
+import GoogleAnalyticsChart from './GoogleAnalyticsChart';
+import GoogleSearchConsoleChart from './GoogleSearchConsoleChart';
+import FacebookChart from './FacebookChart';
+import LinkedInChart from './LinkedInChart';
+import InstagramChart from './InstagramChart';
 
 const Dashboard = () => {
   const googleAnalyticsData = {
@@ -8,7 +12,7 @@ const Dashboard = () => {
         id: 'google-analytics-chart',
       },
       stroke: {
-        curve: 'smooth' // Enable smooth transitions
+        curve: 'smooth',
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -21,11 +25,11 @@ const Dashboard = () => {
       },
       {
         name: 'Sessions',
-        data: [20, 30, 25, 40, 39, 50, 60],
+        data: [20, 30, 25, 40, 39, 50, 60], // Dummy data for Sessions
       },
       {
         name: 'Bounce Rate',
-        data: [10, 15, 12, 20, 18, 25, 30],
+        data: [10, 15, 12, 20, 18, 25, 30], // Dummy data for Bounce Rate
       },
       {
         name: 'Page Views',
@@ -33,7 +37,7 @@ const Dashboard = () => {
       },
       {
         name: 'Avg. Session Duration',
-        data: [5, 6, 5.5, 7, 6.5, 8, 9],
+        data: [5, 6, 5.5, 7, 6.5, 8, 9], // Dummy data for Avg. Session Duration
       },
     ],
   };
@@ -44,7 +48,7 @@ const Dashboard = () => {
         id: 'google-search-console-chart',
       },
       stroke: {
-        curve: 'smooth' // Enable smooth transitions
+        curve: 'smooth',
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -76,7 +80,7 @@ const Dashboard = () => {
         id: 'facebook-chart',
       },
       stroke: {
-        curve: 'smooth' // Enable smooth transitions
+        curve: 'smooth',
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -116,7 +120,7 @@ const Dashboard = () => {
         id: 'linkedin-chart',
       },
       stroke: {
-        curve: 'smooth' // Enable smooth transitions
+        curve: 'smooth',
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -156,7 +160,7 @@ const Dashboard = () => {
         id: 'instagram-chart',
       },
       stroke: {
-        curve: 'smooth' // Enable smooth transitions
+        curve: 'smooth',
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -190,18 +194,39 @@ const Dashboard = () => {
     ],
   };
 
-  return ( 
+  const [selectedGoogleAnalyticsMetric, setSelectedGoogleAnalyticsMetric] = useState('Impressions');
+  const [selectedSearchConsoleMetric, setSelectedSearchConsoleMetric] = useState('Clicks');
+  const [selectedFacebookMetric, setSelectedFacebookMetric] = useState('Reach');
+  const [selectedLinkedInMetric, setSelectedLinkedInMetric] = useState('Reach');
+  const [selectedInstagramMetric, setSelectedInstagramMetric] = useState('Reach');
+  const [selectedTimeframe, setSelectedTimeframe] = useState('24 hours');
+
+  return (
     <div style={{ width: '70%', margin: 0, padding: '40px' }}>
-      <h2 style={{ margin: '30px 0' }}>Google Analytics Metrics</h2>
-      <Chart options={googleAnalyticsData.options} series={googleAnalyticsData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2 style={{ margin: '30px 0' }}>Google Search Console Metrics</h2>
-      <Chart options={googleSearchConsoleData.options} series={googleSearchConsoleData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2 style={{ margin: '30px 0' }}>Facebook Metrics</h2>
-      <Chart options={facebookData.options} series={facebookData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2 style={{ margin: '30px 0' }}>LinkedIn Metrics</h2>
-      <Chart options={linkedinData.options} series={linkedinData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2 style={{ margin: '30px 0' }}>Instagram Metrics</h2>
-      <Chart options={instagramData.options} series={instagramData.series} type="line" height={350} style={{ width: '100%' }} />
+      <GoogleAnalyticsChart selectedMetric={selectedGoogleAnalyticsMetric} data={googleAnalyticsData} />
+      <GoogleSearchConsoleChart selectedMetric="Clicks" data={googleSearchConsoleData} />
+      <FacebookChart selectedMetric="Reach" data={facebookData} />
+      <LinkedInChart selectedMetric="Reach" data={linkedinData} />
+      <InstagramChart selectedMetric="Reach" data={instagramData} />
+      <div>
+        <label htmlFor="timeframe">Select Timeframe:</label>
+        <select
+          id="timeframe"
+          value={selectedTimeframe}
+          onChange={(e) => setSelectedTimeframe(e.target.value)}
+        >
+          <option value="24 hours">Last 24 hours</option>
+          <option value="7 days">Last 7 days</option>
+          <option value="Monthly">Last 30 days</option>
+        </select>
+      </div>
+      <GoogleAnalyticsChart selectedMetric={selectedGoogleAnalyticsMetric} data={googleAnalyticsData} />
+      <GoogleAnalyticsChart selectedMetric="Reach" data={googleAnalyticsData} />
+      <GoogleAnalyticsChart selectedMetric="User Engagement" data={googleAnalyticsData} />
+      <GoogleSearchConsoleChart selectedMetric={selectedSearchConsoleMetric} data={googleSearchConsoleData} />
+      <FacebookChart selectedMetric={selectedFacebookMetric} data={facebookData} />
+      <LinkedInChart selectedMetric={selectedLinkedInMetric} data={linkedinData} />
+      <InstagramChart selectedMetric={selectedInstagramMetric} data={instagramData} />
     </div>
   );
 };
