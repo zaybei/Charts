@@ -176,17 +176,16 @@ const Dashboard = () => {
   };
 
   return ( 
-    <div style={{ width: '100%', margin: 0, padding: 0 }}>
-
-      <h2>Google Analytics Metrics</h2>
+    <div style={{ width: '70%', margin: 0, padding: '40px' }}>
+      <h2 style={{ margin: '30px 0' }}>Google Analytics Metrics</h2>
       <Chart options={googleAnalyticsData.options} series={googleAnalyticsData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2>Google Search Console Metrics</h2>
+      <h2 style={{ margin: '30px 0' }}>Google Search Console Metrics</h2>
       <Chart options={googleSearchConsoleData.options} series={googleSearchConsoleData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2>Facebook Metrics</h2>
+      <h2 style={{ margin: '30px 0' }}>Facebook Metrics</h2>
       <Chart options={facebookData.options} series={facebookData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2>LinkedIn Metrics</h2>
+      <h2 style={{ margin: '30px 0' }}>LinkedIn Metrics</h2>
       <Chart options={linkedinData.options} series={linkedinData.series} type="line" height={350} style={{ width: '100%' }} />
-      <h2>Instagram Metrics</h2>
+      <h2 style={{ margin: '30px 0' }}>Instagram Metrics</h2>
       <Chart options={instagramData.options} series={instagramData.series} type="line" height={350} style={{ width: '100%' }} />
     </div>
   );
