@@ -7,6 +7,9 @@ const Dashboard = () => {
       chart: {
         id: 'google-analytics-chart',
       },
+      stroke: {
+        curve: 'smooth' // Enable smooth transitions
+      },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       },
@@ -40,6 +43,9 @@ const Dashboard = () => {
       chart: {
         id: 'google-search-console-chart',
       },
+      stroke: {
+        curve: 'smooth' // Enable smooth transitions
+      },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       },
@@ -68,6 +74,9 @@ const Dashboard = () => {
     options: {
       chart: {
         id: 'facebook-chart',
+      },
+      stroke: {
+        curve: 'smooth' // Enable smooth transitions
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -106,6 +115,9 @@ const Dashboard = () => {
       chart: {
         id: 'linkedin-chart',
       },
+      stroke: {
+        curve: 'smooth' // Enable smooth transitions
+      },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       },
@@ -142,6 +154,9 @@ const Dashboard = () => {
     options: {
       chart: {
         id: 'instagram-chart',
+      },
+      stroke: {
+        curve: 'smooth' // Enable smooth transitions
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
