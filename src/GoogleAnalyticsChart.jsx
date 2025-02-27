@@ -3,35 +3,22 @@ import Chart from 'react-apexcharts';
 import './GoogleAnalyticsChart.css'; // Import the CSS file
 
 const GoogleAnalyticsChart = ({ data }) => {
-  const [selectedMetric, setSelectedMetric] = useState('Impressions');
+  const [selectedMetric, setSelectedMetric] = useState('ALL');
   const [selectedTimeframe, setSelectedTimeframe] = useState('24 hours');
 
-  const metrics = ['Impressions', 'Sessions', 'Bounce Rate', 'Page Views', 'Avg. Session Duration'];
+  const metrics = ['ALL', 'Impressions', 'Sessions', 'Bounce Rate', 'Page Views', 'Avg. Session Duration'];
 
   const generateRandomData = (metric, timeframe) => {
     switch (metric) {
       case 'Impressions':
         if (timeframe === '24 hours') {
-          return Array.from({ length: 24 }, () => Math.floor(Math.random() * 1000) + 100); // Dummy data for last 24 hours
+          return Array.from({ length: 24 }, () => Math.floor(Math.random() * 1000) + 100);
         } else if (timeframe === '7 days') {
-          return Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000) + 100); // Dummy data for last week
+          return Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000) + 100);
         } else if (timeframe === 'Monthly') {
-          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 1000) + 100); // Dummy data for last 30 days
-        } else if (timeframe === '30 days') {
-          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 1000) + 100); // Dummy data for last 30 days
+          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 1000) + 100);
         }
-
       case 'Sessions':
-        if (timeframe === '24 hours') {
-          return Array.from({ length: 24 }, () => Math.floor(Math.random() * 100) + 20);
-        } else if (timeframe === '7 days') {
-          return Array.from({ length: 7 }, () => Math.floor(Math.random() * 100) + 20);
-        } else if (timeframe === 'Monthly') {
-          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100) + 20);
-        } else if (timeframe === '30 days') {
-          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100) + 20); // Dummy data for last 30 days
-        }
-
         if (timeframe === '24 hours') {
           return Array.from({ length: 24 }, () => Math.floor(Math.random() * 100) + 20);
         } else if (timeframe === '7 days') {
@@ -49,29 +36,19 @@ const GoogleAnalyticsChart = ({ data }) => {
         }
       case 'Page Views':
         if (timeframe === '24 hours') {
-          return Array.from({ length: 24 }, () => Math.floor(Math.random() * 500) + 100); // Dummy data for last 24 hours
+          return Array.from({ length: 24 }, () => Math.floor(Math.random() * 500) + 100);
         } else if (timeframe === '7 days') {
-          return Array.from({ length: 7 }, () => Math.floor(Math.random() * 500) + 100); // Dummy data for last week
+          return Array.from({ length: 7 }, () => Math.floor(Math.random() * 500) + 100);
         } else if (timeframe === 'Monthly') {
-          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 500) + 100); // Dummy data for last 30 days
+          return Array.from({ length: 30 }, () => Math.floor(Math.random() * 500) + 100);
         }
       case 'Avg. Session Duration':
         if (timeframe === '24 hours') {
-          return Array.from({ length: 24 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last 24 hours
+          return Array.from({ length: 24 }, () => (Math.random() * 5 + 5).toFixed(1));
         } else if (timeframe === '7 days') {
-          return Array.from({ length: 7 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last week
+          return Array.from({ length: 7 }, () => (Math.random() * 5 + 5).toFixed(1));
         } else if (timeframe === 'Monthly') {
-          return Array.from({ length: 30 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last 30 days
-        } else if (timeframe === '30 days') {
-          return Array.from({ length: 30 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last 30 days
-        }
-
-        if (timeframe === '24 hours') {
-          return Array.from({ length: 24 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last 24 hours
-        } else if (timeframe === '7 days') {
-          return Array.from({ length: 7 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last week
-        } else if (timeframe === 'Monthly') {
-          return Array.from({ length: 30 }, () => (Math.random() * 5 + 5).toFixed(1)); // Dummy data for last 30 days
+          return Array.from({ length: 30 }, () => (Math.random() * 5 + 5).toFixed(1));
         }
       default:
         return [];
@@ -92,23 +69,26 @@ const GoogleAnalyticsChart = ({ data }) => {
                    Array.from({ length: 30 }, (_, i) => `Day ${i + 1}`),
       },
     },
-    series: [
-      {
-        name: selectedMetric,
-        data: generateRandomData(selectedMetric, selectedTimeframe),
-      },
-    ],
+    series: selectedMetric === 'ALL' 
+      ? metrics.map(metric => ({
+          name: metric,
+          data: generateRandomData(metric, selectedTimeframe),
+        }))
+      : [{
+          name: selectedMetric,
+          data: generateRandomData(selectedMetric, selectedTimeframe),
+        }],
   };
 
   return (
     <div>
       <h2>{selectedMetric} - Google Analytics Metrics</h2>
-      <div className="dropdown-container"> {/* Apply the new CSS class */}
+      <div className="dropdown-container">
         <div>
           <label htmlFor="timeframe">Select Timeframe:</label>
           <select
             id="timeframe"
-            className="dropdown" // Apply the CSS class
+            className="dropdown"
             value={selectedTimeframe}
             onChange={(e) => setSelectedTimeframe(e.target.value)}
           >
@@ -122,7 +102,7 @@ const GoogleAnalyticsChart = ({ data }) => {
           <label htmlFor="metrics">Select Metric:</label>
           <select
             id="metrics"
-            className="dropdown" // Apply the CSS class
+            className="dropdown"
             value={selectedMetric}
             onChange={(e) => setSelectedMetric(e.target.value)}
           >
@@ -132,7 +112,6 @@ const GoogleAnalyticsChart = ({ data }) => {
           </select>
         </div>
       </div>
-
 
       <Chart options={chartData.options} series={chartData.series} type="line" height={350} />
     </div>

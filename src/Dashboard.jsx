@@ -220,13 +220,6 @@ const Dashboard = () => {
           <option value="Monthly">Last 30 days</option>
         </select>
       </div>
-      <GoogleAnalyticsChart selectedMetric={selectedGoogleAnalyticsMetric} data={googleAnalyticsData} />
-      <GoogleAnalyticsChart selectedMetric="Reach" data={googleAnalyticsData} />
-      <GoogleAnalyticsChart selectedMetric="User Engagement" data={googleAnalyticsData} />
-      <GoogleSearchConsoleChart selectedMetric={selectedSearchConsoleMetric} data={googleSearchConsoleData} />
-      <FacebookChart selectedMetric={selectedFacebookMetric} data={facebookData} />
-      <LinkedInChart selectedMetric={selectedLinkedInMetric} data={linkedinData} />
-      <InstagramChart selectedMetric={selectedInstagramMetric} data={instagramData} />
     </div>
   );
 };
