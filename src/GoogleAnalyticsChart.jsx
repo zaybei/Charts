@@ -70,14 +70,17 @@ const GoogleAnalyticsChart = ({ data }) => {
       },
     },
     series: selectedMetric === 'ALL' 
-      ? metrics.map(metric => ({
-          name: metric,
-          data: generateRandomData(metric, selectedTimeframe),
-        }))
+      ? metrics
+          .filter(metric => metric !== 'ALL')
+          .map(metric => ({
+            name: metric,
+            data: generateRandomData(metric, selectedTimeframe),
+          }))
       : [{
           name: selectedMetric,
           data: generateRandomData(selectedMetric, selectedTimeframe),
         }],
+
   };
 
   return (
