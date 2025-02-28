@@ -117,6 +117,40 @@ const GoogleAnalyticsChart = ({ data }) => {
       </div>
 
       <Chart options={chartData.options} series={chartData.series} type="line" height={350} />
+        <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            {selectedMetric === 'ALL' 
+              ? metrics.filter(metric => metric !== 'ALL').map(metric => (
+                  <th key={metric}>{metric}</th>
+                ))
+              : <th>{selectedMetric}</th>
+            }
+            <th>Links</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {chartData.options.xaxis.categories.map((time, index) => (
+            <tr key={time}>
+              <td>{time}</td>
+              {selectedMetric === 'ALL'
+                ? metrics.filter(metric => metric !== 'ALL').map(metric => (
+                    <td key={metric}>
+                      {chartData.series.find(s => s.name === metric)?.data[index]}
+                    </td>
+                  ))
+                : <td>{chartData.series[0].data[index]}</td>
+              }
+              <td>
+                <a href="#" onClick={(e) => e.preventDefault()}>Xorbix.com/...</a>
+              </td>
+
+            </tr>
+          ))}
+        </tbody>
+        </table>
     </div>
   );
 };
